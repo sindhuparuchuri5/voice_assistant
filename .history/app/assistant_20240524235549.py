@@ -6,8 +6,10 @@ import speech_recognition as sr
 # log file path within the container
 log_file = "/voice_assistant/logs/interaction.log"
 
+# Configure logging to the log file
 logging.basicConfig(filename=log_file, level=logging.INFO, format='%(asctime)s - %(message)s')
 
+# Initialize text-to-speech engine once
 tts_engine = pyttsx3.init()
 
 def speak(text):
