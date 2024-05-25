@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Assistant</title>
+</head>
+<body>
+    <h1>Voice Assistant</h1>
+    <button id="startButton">Start Questions</button>
+    <div id="responseContainer"></div>
+
+    <script>
+        document.getElementById('startButton').addEventListener('click', async () => {
+            const responseContainer = document.getElementById('responseContainer');
+            responseContainer.innerHTML = '<p>Asking questions...</p>';
+
+            const response = await fetch('/start_questions', {
+                method: 'POST'
+            });
+
+            const data = await response.json();
+            responseContainer.innerHTML = '<h2>Responses:</h2>';
+            data.forEach(([question, answer]) => {
+                responseContainer.innerHTML += `<p><strong>${question}</strong><br>Answer: ${answer}</p>`;
+            });
+        });
+    </script>
+</body>
+</html>
